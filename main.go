@@ -9,14 +9,6 @@ import (
 	"net/http"
 )
 
-const faqPage = `
-<h1>FAQ page</h1>
-<p>Q: Is there a free version?</p>
-<p>A: Yes! We offer a free trial for 30 days on any paid plans</p>
-<p>Q: What are your support hours?</p>
-<p>A: WE have support staff answering emails 24/7 though response times may be a bit slower on weekends</p>
-`
-
 func executeTemplate(w http.ResponseWriter, filepath string) {
 	w.Header().Set("Content-Type", "text/html; charset=utf-8")
 	tpl, err := template.ParseFiles(filepath)
