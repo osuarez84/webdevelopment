@@ -25,24 +25,15 @@ func main() {
 	r := chi.NewRouter()
 	r.Use(middleware.Logger)
 
-	tpl, err := views.Parse("templates/home.gohtml")
-	if err != nil {
-		panic(err)
-	}
+	tpl := views.Must(views.Parse("templates/home.gohtml"))
 
 	r.Get("/", controllers.StaticHandler(tpl))
 
-	tpl, err = views.Parse("templates/contact.gohtml")
-	if err != nil {
-		panic(err)
-	}
+	tpl = views.Must(views.Parse("templates/contact.gohtml"))
 
 	r.Get("/contact", controllers.StaticHandler(tpl))
 
-	tpl, err = views.Parse("templates/faq.gohtml")
-	if err != nil {
-		panic(err)
-	}
+	tpl = views.Must(views.Parse("templates/faq.gohtml"))
 
 	r.Get("/faq", controllers.StaticHandler(tpl))
 	fmt.Println("Starting the server on :3000")
