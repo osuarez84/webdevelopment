@@ -5,6 +5,7 @@ import (
 	"github.com/go-chi/chi/v5"
 	"github.com/go-chi/chi/v5/middleware"
 	"github.com/osuarez84/webdevelopment/controllers"
+	"github.com/osuarez84/webdevelopment/templates"
 	"github.com/osuarez84/webdevelopment/views"
 	"log"
 	"net/http"
@@ -25,15 +26,15 @@ func main() {
 	r := chi.NewRouter()
 	r.Use(middleware.Logger)
 
-	tpl := views.Must(views.Parse("templates/home.gohtml"))
+	tpl := views.Must(views.ParseFS(templates.FS, "home.gohtml"))
 
 	r.Get("/", controllers.StaticHandler(tpl))
 
-	tpl = views.Must(views.Parse("templates/contact.gohtml"))
+	tpl = views.Must(views.ParseFS(templates.FS, "contact.gohtml"))
 
 	r.Get("/contact", controllers.StaticHandler(tpl))
 
-	tpl = views.Must(views.Parse("templates/faq.gohtml"))
+	tpl = views.Must(views.ParseFS(templates.FS, "faq.gohtml"))
 
 	r.Get("/faq", controllers.StaticHandler(tpl))
 	fmt.Println("Starting the server on :3000")
